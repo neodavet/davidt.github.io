@@ -430,6 +430,78 @@ footer {
     transform: scale(1.1);
 }
 
+/* Contact Section */
+.contact-section {
+    padding: 6rem 1rem;
+    text-align: center;
+}
+
+.contact-intro {
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background-color: #185D8C;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-btn i {
+    font-size: 1.2rem;
+}
+
+.contact-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.contact-btn--linkedin {
+    background-color: #0a66c2;
+}
+
+.contact-btn--linkedin:hover {
+    background-color: #004182;
+}
+
+.contact-btn--github {
+    background-color: #2c3e50;
+}
+
+.contact-btn--github:hover {
+    background-color: #34495e;
+}
+
+@media (max-width: 768px) {
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
     .skills-grid {
