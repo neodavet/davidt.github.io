@@ -2,100 +2,101 @@
 const portfolioData = [
     {
         title: "Be Local - Local Business Platform",
-        description: "A comprehensive e-commerce platform built with WooCommerce and UX Builder, featuring a custom dashboard and robust WordPress security measures. The platform runs on Siteground with MySQL database integration for optimal performance.",
-        // image: "https://via.placeholder.com/400x300",
-        technologies: ["Woocomerce", "UX Builder", "Dashboard Customization", "WordPress Security", "Zapier", "Siteground", "MySQL"],
+        description: "Architected and built a complex multivendor WooCommerce platform integrating Klaviyo (CRM + email/SMS automation), Twilio via Zapier, Authorize.net payment processing, and Facebook Pixel. Managed the full project lifecycle across 3 years — from architecture decisions and requirements through deployment, optimization, and ongoing support. Stack: WooCommerce, WordPress, Klaviyo, Zapier, Twilio, Authorize.net, GA4, Google Ads, CI/CD, Git, BlogVault.",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Be+Local",
+        technologies: ["WooCommerce", "WordPress", "Klaviyo", "Zapier", "Twilio", "Authorize.net", "GA4", "Google Ads", "CI/CD", "Git", "BlogVault"],
         link: "https://be-local.life/"
     },
     {
         title: "Aerofarms - Vertical Farming Corporate Website",
-        description: "A sophisticated corporate website built with WordPress and Beaver Builder, featuring advanced analytics integration and comprehensive security measures. The site is optimized for performance and hosted on WP Engine with MySQL database support.",
-        // image: "https://via.placeholder.com/400x300",
+        description: "4-year engagement managing and developing a corporate WordPress site through two full redesigns. Sustained Lighthouse Desktop 98–100/100 for 2+ years, GTMetrix Grade A with LCP ≤445ms, TBT 0ms, CLS 0, and zero Core Web Vitals issues across 199 URLs for 12+ consecutive months (verified via Google Search Console). Lighthouse Accessibility 100/100 and On-Page SEO 100/100. Security headers rated A+. Stack: WordPress, Beaver Builder, WP Engine, MySQL, Wordfence, Google Search Console.",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Aerofarms",
         technologies: ["WordPress", "Beaver Builder", "WP Engine", "MySQL", "WordPress Security", "Web Optimization", "Web Analytics"],
         link: "https://www.aerofarms.com/"
     },
     {
+        title: "National Business Capital — Fintech Web Platform",
+        description: "Contracted through Stateside to rebuild and enhance the web platform for National Business Capital, a U.S. fintech company with $3B+ in funded capital. Developed custom Gutenberg blocks from scratch enabling the editorial team to manage structured financial content independently. Built a custom multi-environment control plugin for Pantheon dev/staging/production pipelines. Implemented Git flow and performed strategic code refactoring ahead of platform launch. Result: platform launched on schedule, 9 production releases delivered, 60+ tasks completed.",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=National+Business+Capital",
+        technologies: ["WordPress", "Gutenberg", "Custom Blocks", "Pantheon", "PHP", "JavaScript", "Git", "CI/CD"],
+        link: "https://www.nationalbusinesscapital.com/"
+    },
+    {
         title: "Phin - Social Good Platform",
-        description: "A modern web application built with React and Node.js, featuring GraphQL API integration and Contentful CMS. The platform includes Slack integration, HR system compatibility, and is hosted on AWS with MongoDB database. Includes comprehensive monitoring with Honeybadger.",
+        description: "Performance and architecture optimization for a React + Node.js + GraphQL + Contentful + MongoDB platform. The platform could not process more than ~100 concurrent users. After simplifying the architecture, optimizing React-side API calls, optimizing DB queries, and restructuring Contentful, the platform successfully processed 1,000+ concurrent users during a live campaign. Load testing via LoadNinja. Monitoring via Datadog and HoneyBadger.",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Phin",
         technologies: ["React", "Node.js", "GraphQL", "Contentful", "AWS", "MongoDB", "LoadNinja", "Honeybadger"],
         link: "https://www.phinforgood.com/"
     },
     {
         title: "Praeses - Custom Corporate Website",
         description: "A fully customized WordPress website featuring custom Gutenberg blocks and a bespoke theme. The site includes custom plugin development, comprehensive web optimization, and is hosted on GoDaddy with enhanced security measures.",
-        // image: "https://via.placeholder.com/400x300",
-        technologies: ["WordPress","Custom Gutenberg Blocks", "Custom Theme", "ACF", "Custom Plugins", "Web Optimization", "GoDaddy"],
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Praeses",
+        technologies: ["WordPress", "Custom Gutenberg Blocks", "Custom Theme", "ACF", "Custom Plugins", "Web Optimization", "GoDaddy"],
         link: "https://www.praeses.com/"
     },
     {
         title: "Modena Warehouse - Non-profit Community Organization",
         description: "A comprehensive WordPress website with custom theme development and Gutenberg integration. Features include Monday.com integration, Google Sheets automation, Givebutter donation system, and Klaviyo email marketing. Hosted on Siteground with MySQL database.",
-        // image: "https://via.placeholder.com/400x300",
-        technologies: ["WordPress", "Gutenberg", "Custom Theme", "Monday.com", "Google Sheet ", "Givebutter", "Klaviyo", "Siteground", "MySQL"],
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Modena+Warehouse",
+        technologies: ["WordPress", "Gutenberg", "Custom Theme", "Monday.com", "Google Sheet", "Givebutter", "Klaviyo", "Siteground", "MySQL"],
         link: "https://modenawarehouse.com/"
     },
     {
-        title: "Ballet Cuba - Dance National Company",
-        description: "A custom Drupal website featuring a bespoke theme and custom data structure. The platform is built with MariaDB database and is hosted on Bluehost, including advanced content management capabilities for dance company information.",
-        // image: "https://via.placeholder.com/400x300",
-        technologies: ["Drupal", "Custom Theme", "Custom Data Structure", "MariaDB"],
-        link: "https://balletcuba.cult.cu/"
+        title: "OHD Partners - Corporate Website",
+        description: "A professional WordPress corporate website built with Elementor page builder, featuring comprehensive security measures and responsive design. The project included successful hack recovery, complete site migration, and extensive web optimization. The site is hosted on Siteground with MySQL database integration, ensuring robust performance and security.",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=OHD+Partners",
+        technologies: ["WordPress", "Elementor", "MySQL", "Hack Recovery", "Site Migration", "WordPress Security", "Web Optimization", "Siteground"],
+        link: "https://ohdpartners.com/"
+    },
+    {
+        title: "FreeReferral — Headless WordPress + React Platform",
+        description: "Maintenance and development of a decoupled architecture: WordPress as Headless CMS/Backend on SiteGround communicating with a React.js frontend hosted on Vercel via GraphQL API. Hardened WordPress Admin security against common attack vectors. Diagnosed and resolved a critical SiteGround firewall bug where unsigned API requests with variable IPs were being blocked — resolved by standardizing the request signature and routing API calls through a fixed IP via proxy, whitelisted at firewall level.",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=FreeReferral",
+        technologies: ["WordPress", "Headless CMS", "React.js", "GraphQL", "Vercel", "SiteGround", "PHP"],
+        link: "https://freereferral.com/"
     },
     {
         title: "Lukac's Pottery - Shopify Local Craft Store",
         description: "A fully customized Shopify e-commerce platform featuring a custom Liquid theme and real-time inventory management. The project included comprehensive site migration and optimization for a local craft store.",
-        // image: "https://via.placeholder.com/400x300",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Lukacs+Pottery",
         technologies: ["Shopify", "Liquid", "Custom Theme", "Site Migration"],
         link: "https://lukacspottery.com/"
     },
     {
         title: "IpsCuba - WorldWide News Agency Platform",
         description: "A robust WordPress news platform featuring a custom theme and MariaDB database integration. The site includes comprehensive security measures, web optimization, and is hosted on Netuy with advanced content management capabilities.",
-        // image: "https://via.placeholder.com/400x300",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=IpsCuba",
         technologies: ["WordPress", "Custom Theme", "MariaDB", "WordPress Security", "Web Optimization", "Netuy"],
         link: "https://www.ipscuba.net/"
     },
     {
         title: "Estudio Figueroa Vives - Art Studio",
         description: "A multilingual WordPress website built with WPBakery page builder, featuring comprehensive security measures and web optimization. The site is hosted on HostPapa with MySQL database support and includes advanced content management capabilities.",
-        // image: "https://via.placeholder.com/400x300",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Estudio+Figueroa+Vives",
         technologies: ["WordPress", "WPBakery", "MySQL", "Multiple Languages", "WordPress Security", "Web Optimization", "Host Papa"],
         link: "https://estudiofigueroavives.com/en/home/"
     },
     {
-        title: "Madu Tours - Travel Agency",
-        description: "A multilingual WordPress website built with The 7 theme framework, featuring comprehensive content management capabilities. The site is optimized for performance and includes MySQL database integration for travel agency information.",
-        // image: "https://via.placeholder.com/400x300",
-        technologies: ["WordPress", "The 7", "MySQL", "Multiple Languages"],
-        link: "https://madutours.com/"
-    },
-    {
-        title: "Acosta Danza - Dance Company",
-        description: "Acosta Danza is a dance company that allows users to share and discover dance from around the world.",
-        // image: "https://via.placeholder.com/400x300",
-        technologies: ["Drupal", "Custom Theme", "Custom Data Structure", "MariaDB", "Bluehost"],
-        link: "https://acostadanza.com/"
-    },
-    {
         title: "Blue Ocean Tech - Corporate Website",
         description: "A custom WordPress corporate website featuring a bespoke theme and comprehensive security measures. The site is optimized for performance and hosted on Siteground with MySQL database integration.",
-        // image: "https://via.placeholder.com/400x300",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Blue+Ocean+Tech",
         technologies: ["WordPress", "Custom Theme", "ACF", "MySQL", "WordPress Security", "Web Optimization", "Siteground"],
         link: "https://blueoceantech.us/"
     },
     {
         title: "Dador Havana - Fashion Design Studio",
         description: "A custom WordPress e-commerce website featuring WooCommerce integration and a bespoke theme. The site includes comprehensive security measures, web optimization, and MySQL database integration for fashion design studio products.",
-        // image: "https://via.placeholder.com/400x300",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Dador+Havana",
         technologies: ["WordPress", "WooCommerce", "Custom Theme", "MySQL", "WordPress Security", "Web Optimization"],
         link: "https://www.dadorhavana.com/"
     },
     {
-        title: "OHD Partners - Corporate Website",
-        description: "A professional WordPress corporate website built with Elementor page builder, featuring comprehensive security measures and responsive design. The project included successful hack recovery, complete site migration, and extensive web optimization. The site is hosted on Siteground with MySQL database integration, ensuring robust performance and security.",
-        // image: "https://via.placeholder.com/400x300",
-        technologies: ["WordPress", "Elementor", "MySQL", "Hack Recovery", "Site Migration" ,"WordPress Security", "Web Optimization", "Siteground"],
-        link: "https://ohdpartners.com/"
+        title: "Madu Tours - Travel Agency",
+        description: "A multilingual WordPress website built with The 7 theme framework, featuring comprehensive content management capabilities. The site is optimized for performance and includes MySQL database integration for travel agency information.",
+        image: "https://placehold.co/400x300/1a4fa0/ffffff?text=Madu+Tours",
+        technologies: ["WordPress", "The 7", "MySQL", "Multiple Languages"],
+        link: "https://madutours.com/"
     }
 ];
 
