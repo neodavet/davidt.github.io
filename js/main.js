@@ -50,10 +50,10 @@ const portfolioData = [
         link: "https://ohdpartners.com/"
     },
     {
-        title: "FreeReferral — Headless WordPress + React Platform",
+        title: "FreeReferral — Headless WordPress + Sveltekit + Vercel Platform",
         description: "Maintenance and development of a decoupled architecture: WordPress as Headless CMS/Backend on SiteGround communicating with a React.js frontend hosted on Vercel via GraphQL API. Hardened WordPress Admin security against common attack vectors. Diagnosed and resolved a critical SiteGround firewall bug where unsigned API requests with variable IPs were being blocked — resolved by standardizing the request signature and routing API calls through a fixed IP via proxy, whitelisted at firewall level.",
         image: "https://placehold.co/400x300/1a4fa0/ffffff?text=FreeReferral",
-        technologies: ["WordPress", "Headless CMS", "React.js", "GraphQL", "Vercel", "SiteGround", "PHP"],
+        technologies: ["WordPress", "Headless CMS", "Sveltekit", "GraphQL", "Vercel", "SiteGround", "PHP"],
         link: "https://freereferral.com/"
     },
     {
