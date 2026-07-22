@@ -21,11 +21,12 @@ David Tavares Senior Web Full Stack Development Portfolio
 
 ```
 portfolio/
-├── index.html              # Main HTML file
-├── css/
-│   └── styles.css         # Custom styles
+├── index.html              # Markup + inlined CSS + inline SVG icons + SEO meta
 ├── js/
 │   └── main.js            # JavaScript functionality
+├── robots.txt             # Search-engine directives
+├── sitemap.xml            # Sitemap
+└── site.webmanifest       # PWA manifest
 ```
 
 ## Setup
@@ -36,7 +37,8 @@ portfolio/
 4. Update the portfolio data in the JavaScript file
 
 ## Dependencies
-- Font Awesome 6.0.0
+
+None. No build step, no package manager, no CDN. Icons are inline SVG, CSS is inlined in `index.html`, and the site is tuned to score 100 across all four Lighthouse / PageSpeed categories.
 
 ## Customization
 
@@ -44,7 +46,7 @@ portfolio/
 Edit the `portfolioData` array in the JavaScript file to add or modify portfolio items.
 
 ### Styling
-Modify `css/styles.css` to customize the appearance.
+Modify the inline `<style>` block in `index.html` to customize the appearance.
 
 ### Content
 Update the content in the HTML file to match your information.
