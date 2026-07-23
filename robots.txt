@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neodavet.github.io/davetportfolio/sitemap.xml

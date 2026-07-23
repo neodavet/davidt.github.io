@@ -205,24 +205,34 @@ function initHeroSlider() {
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
 
-    // Preload images
+    // Preload images. Slide 1 already has its background-image inline (it is the
+    // LCP element, preloaded in <head>); slides 2+ carry their URL in data-src so
+    // they don't compete with the LCP image during the initial load.
     function preloadImages() {
         slides.forEach(slide => {
-            const bgImage = slide.style.backgroundImage;
-            const imageUrl = bgImage.replace(/url\(['"](.+)['"]\)/, '$1');
+            const inlineBg = slide.style.backgroundImage;
+            const imageUrl = inlineBg
+                ? inlineBg.replace(/url\(['"](.+)['"]\)/, '$1')
+                : slide.dataset.src;
+
+            if (!imageUrl) return;
+
             const img = new Image();
-            
+
             slide.classList.add('loading');
-            
+
             img.onload = () => {
+                if (!inlineBg) {
+                    slide.style.backgroundImage = `url('${imageUrl}')`;
+                }
                 slide.classList.remove('loading');
             };
-            
+
             img.onerror = () => {
                 console.error(`Failed to load image: ${imageUrl}`);
                 slide.classList.remove('loading');
             };
-            
+
             img.src = imageUrl;
         });
     }
@@ -283,28 +293,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Helper to sync the button's accessible expanded state
+    function setMenuOpen(isOpen) {
+        mobileMenuBtn.classList.toggle('active', isOpen);
+        navContainer.classList.toggle('active', isOpen);
+        mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
     // Toggle menu
     mobileMenuBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navContainer.classList.toggle('active');
-        document.body.style.overflow = navContainer.classList.contains('active') ? 'hidden' : '';
+        setMenuOpen(!navContainer.classList.contains('active'));
     });
 
     // Close menu when clicking on a link
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            navContainer.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', () => setMenuOpen(false));
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
         if (!navContainer.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-            mobileMenuBtn.classList.remove('active');
-            navContainer.classList.remove('active');
-            document.body.style.overflow = '';
+            setMenuOpen(false);
+        }
+    });
+
+    // Close menu on Escape for keyboard users
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && navContainer.classList.contains('active')) {
+            setMenuOpen(false);
+            mobileMenuBtn.focus();
         }
     });
 

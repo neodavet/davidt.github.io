@@ -4,45 +4,781 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="David Tavares - Senior Web Developer Portfolio showcasing 16 years of expertise in WordPress, PHP, and full-stack development. View 100+ successful projects, including custom WordPress themes and plugins, e-commerce solutions, and enterprise web applications.">
-    <title>David Tavares Portfolio | Web Developer</title>
-    
+    <title>David Tavares Portfolio | Senior WordPress Developer</title>
+
+    <!-- Canonical & SEO -->
+    <link rel="canonical" href="https://neodavet.github.io/davetportfolio/">
+    <meta name="author" content="David Tavares">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://neodavet.github.io/davetportfolio/">
+    <meta property="og:title" content="David Tavares Portfolio | Senior WordPress Developer">
+    <meta property="og:description" content="Senior WordPress Developer & Technical Project Manager. 15+ years delivering web and e-commerce solutions for U.S.-based companies, remotely from Montevideo, Uruguay.">
+    <meta property="og:image" content="https://neodavet.github.io/davetportfolio/images/slider/portfolio-1.webp">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="David Tavares Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="David Tavares Portfolio | Senior WordPress Developer">
+    <meta name="twitter:description" content="Senior WordPress Developer & Technical Project Manager. 15+ years delivering web and e-commerce solutions for U.S.-based companies.">
+    <meta name="twitter:image" content="https://neodavet.github.io/davetportfolio/images/slider/portfolio-1.webp">
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png" width="32" height="32">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png" width="16" height="16">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png" width="180" height="180">
-    <!-- <link rel="manifest" href="images/favicon/site.webmanifest">
-    <link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#3498db"> -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="msapplication-TileColor" content="#3498db">
     <meta name="theme-color" content="#ffffff">
-    
-    <!-- Preload -->
-    <link rel="preload" href="css/styles.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" font-display="swap">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous" font-display="swap">
-    <link rel="preload" href="images/slider/portfolio-1.webp" as="image" type="image/webp">
-    <link rel="preload" href="images/slider/portfolio-2.webp" as="image" type="image/webp">
-    <link rel="preload" href="images/slider/portfolio-3.webp" as="image" type="image/webp">
-    <link rel="preload" href="images/slider/portfolio-4.webp" as="image" type="image/webp">
-    <link rel="preload" href="images/slider/portfolio-5.webp" as="image" type="image/webp">
-    <link rel="stylesheet" href="css/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    
-    <noscript>  
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    </noscript>
-    
+    <meta name="color-scheme" content="light">
+
+    <!-- Preload only the LCP (first hero slide); remaining slides are lazy-loaded in JS -->
+    <link rel="preload" href="images/slider/portfolio-1.webp" as="image" type="image/webp" fetchpriority="high">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "David Tavares",
+        "url": "https://neodavet.github.io/davetportfolio/",
+        "jobTitle": "Senior WordPress Developer & Technical Project Manager",
+        "email": "mailto:tavares.david86@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Montevideo",
+            "addressCountry": "UY"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/in/tavaresdavid86/",
+            "https://github.com/neodavet"
+        ],
+        "knowsAbout": ["WordPress", "PHP", "JavaScript", "React.js", "WooCommerce", "Gutenberg", "Web Performance", "SEO", "Technical Project Management"]
+    }
+    </script>
+
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Accessibility: skip link */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: #185D8C;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            z-index: 2000;
+            border-radius: 0 0 5px 0;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        /* Accessibility: visible keyboard focus */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #3498db;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Inline icon sizing (replaces Font Awesome) */
+        .icon {
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .container > h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        /* Navigation */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #185D8C;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Loading state for slides */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .slide.loading::before {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            background-color: #185D8C;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .resume-download {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .resume-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .resume-button .icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .resume-button:hover {
+            background-color: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 6rem 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 6rem 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .portfolio-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Container for load more button */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .portfolio-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .portfolio-item-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-item h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .portfolio-item h3 a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-item h3 a:hover {
+            color: #3498db;
+        }
+
+        .portfolio-item p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background-color: #e9ecef;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #495057;
+        }
+
+        #load-more {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: #185D8C;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        #load-more:hover {
+            background-color: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: middle;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-float .icon {
+            width: 34px;
+            height: 34px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 1rem;
+            text-align: center;
+        }
+
+        .contact-intro {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background-color: #185D8C;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn .icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .contact-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-btn--linkedin {
+            background-color: #0a66c2;
+        }
+
+        .contact-btn--linkedin:hover {
+            background-color: #004182;
+        }
+
+        .contact-btn--github {
+            background-color: #2c3e50;
+        }
+
+        .contact-btn--github:hover {
+            background-color: #34495e;
+        }
+
+        @media (max-width: 768px) {
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container.active .nav-links {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .portfolio-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-float .icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .resume-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1000;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease-in-out;
+        }
+
+        @media screen and (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background-color: #fff;
+                overflow: hidden;
+                transition: height 0.3s ease-in-out;
+                z-index: 999;
+            }
+
+            .nav-container.active {
+                height: 100vh;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 80px;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .nav-container.active .nav-links {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px 20px;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links a:hover,
+            .nav-links a:focus,
+            .nav-links a.active {
+                background-color: #3498db;
+                color: white;
+            }
+
+            /* Hamburger to X animation */
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+        }
+    </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Inline SVG icon sprite (replaces Font Awesome CDN) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-linkedin" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></symbol>
+        <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.3-5-3.7-10.5-6.5z"/></symbol>
+        <symbol id="i-envelope" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></symbol>
+        <symbol id="i-globe" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64l-185.3 0c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64l185.3 0c2.2 20.4 3.3 41.8 3.3 64zm28.8-64l123.1 0c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64l-123.1 0c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32l-116.7 0c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0l-176.6 0c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0L18.6 160C48.6 85.9 112.2 29.1 190.6 8.4 165.1 42.6 145.3 96.1 135.3 160zM8.1 192l123.1 0c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64L8.1 320C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6l176.6 0c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5C271.4 508.8 262.1 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352l116.7 0zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.3-87.7 55.3-151.6l116.7 0z"/></symbol>
+        <symbol id="i-users" viewBox="0 0 640 512"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></symbol>
+        <symbol id="i-star" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></symbol>
+    </svg>
+
     <header>
-        <nav>
+        <nav aria-label="Primary">
             <div class="logo">David's Portfolio</div>
-            <div class="mobile-menu-btn">
+            <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-            <div class="nav-container">
+            </button>
+            <div class="nav-container" id="nav-menu">
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About Me</a></li>
@@ -54,19 +790,19 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section id="home" class="hero">
             <div class="hero-slider">
-                <div class="slide active" style="background-image: url('images/slider/portfolio-1.webp')" width="1920" height="1080"></div>
-                <div class="slide active" style="background-image: url('images/slider/portfolio-2.webp')" width="1920" height="1080"></div>
-                <div class="slide active" style="background-image: url('images/slider/portfolio-3.webp')" width="1920" height="1080"></div>
-                <div class="slide active" style="background-image: url('images/slider/portfolio-4.webp')" width="1920" height="1080"></div>
-                <div class="slide active" style="background-image: url('images/slider/portfolio-5.webp')" width="1920" height="1080"></div>
+                <div class="slide active" style="background-image: url('images/slider/portfolio-1.webp')"></div>
+                <div class="slide" data-src="images/slider/portfolio-2.webp"></div>
+                <div class="slide" data-src="images/slider/portfolio-3.webp"></div>
+                <div class="slide" data-src="images/slider/portfolio-4.webp"></div>
+                <div class="slide" data-src="images/slider/portfolio-5.webp"></div>
             </div>
             <div class="hero-overlay"></div>
             <div class="container">
                 <h1>David Tavares</h1>
-                <h2>Senior WordPress Developer & Technical Project Manager</h2>
+                <h2>Senior WordPress Developer &amp; Technical Project Manager</h2>
                 <p>15+ years delivering web and e-commerce solutions for U.S.-based companies, remotely from Montevideo, Uruguay.</p>
                 <a href="#portfolio" class="cta-button">View My Work</a>
             </div>
@@ -80,8 +816,8 @@
                         <p>Senior WordPress Developer and Technical Project Manager with 15+ years delivering web and e-commerce solutions for U.S.-based companies. I bridge the gap between technical execution and project delivery, comfortable architecting a custom Gutenberg block system, running Agile sprints, and presenting to stakeholders in English in the same afternoon. Recent work includes contributing to the web platform of National Business Capital, a U.S. fintech company with $3B+ in funded capital, and leading a portfolio of 50+ concurrent projects as Operations Manager at Blue Ocean Technology LLC, where I sustained Lighthouse Desktop 98–100/100 and zero Core Web Vitals issues across 199 URLs for 12+ consecutive months.</p>
                         <p>My stack runs deep on WordPress: custom themes, plugins, Gutenberg blocks, WooCommerce, and headless CMS architectures with GraphQL. It extends further into PHP, JavaScript, React.js, Node.js, REST APIs, and cloud infrastructure across AWS, Google Cloud, Pantheon, WP Engine, and Vercel. I am actively expanding into AI Engineering via the applications path, building local agents with Ollama, working with MCP (Model Context Protocol), and integrating LLMs into development workflows. Scrum-certified (SFPC), C1 Advanced English (ETS certified), based in Montevideo, Uruguay, and fully available for remote roles with U.S. companies.</p>
                         <div class="resume-download">
-                            <a href="https://www.linkedin.com/in/tavaresdavid86/" class="resume-button" target="_blank">
-                                <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/tavaresdavid86/" class="resume-button" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg>
                                 View LinkedIn Profile
                             </a>
                         </div>
@@ -92,7 +828,7 @@
 
         <section id="skills" class="skills-section">
             <div class="container">
-                <h2>Technologies & Skills</h2>
+                <h2>Technologies &amp; Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
                         <h3>Frontend</h3>
@@ -115,7 +851,7 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>CMS & E-Commerce</h3>
+                        <h3>CMS &amp; E-Commerce</h3>
                         <ul>
                             <li>WordPress</li>
                             <li>Gutenberg</li>
@@ -135,7 +871,7 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>Cloud & DevOps</h3>
+                        <h3>Cloud &amp; DevOps</h3>
                         <ul>
                             <li>Git</li>
                             <li>CI/CD</li>
@@ -150,7 +886,7 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>AI & Automation</h3>
+                        <h3>AI &amp; Automation</h3>
                         <ul>
                             <li>Claude / Claude Code</li>
                             <li>Cursor</li>
@@ -161,7 +897,7 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>Performance & SEO</h3>
+                        <h3>Performance &amp; SEO</h3>
                         <ul>
                             <li>Google Core Vitals</li>
                             <li>Lighthouse</li>
@@ -173,7 +909,7 @@
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>Marketing & Analytics</h3>
+                        <h3>Marketing &amp; Analytics</h3>
                         <ul>
                             <li>GA4</li>
                             <li>Google Ads</li>
@@ -191,17 +927,17 @@
                 <h2>Portfolio</h2>
                 <div class="portfolio-stats">
                     <div class="stat-card">
-                        <i class="fas fa-globe"></i>
+                        <svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>
                         <h3>150+</h3>
                         <p>Websites Developed</p>
                     </div>
                     <div class="stat-card">
-                        <i class="fas fa-users"></i>
+                        <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
                         <h3>100+</h3>
                         <p>Satisfied Clients</p>
                     </div>
                     <div class="stat-card">
-                        <i class="fas fa-star"></i>
+                        <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
                         <h3>4.9/5</h3>
                         <p>Client Rating</p>
                     </div>
@@ -222,15 +958,15 @@
                 <p class="contact-intro">I'm available for full-time remote roles and project-based work with U.S.-based companies. The best way to reach me is by email or LinkedIn.</p>
                 <div class="contact-buttons">
                     <a href="mailto:tavares.david86@gmail.com" class="contact-btn">
-                        <i class="fas fa-envelope"></i>
+                        <svg class="icon" aria-hidden="true"><use href="#i-envelope"></use></svg>
                         Email Me
                     </a>
-                    <a href="https://www.linkedin.com/in/tavaresdavid86/" class="contact-btn contact-btn--linkedin" target="_blank" aria-label="Visit David Tavares LinkedIn profile">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/tavaresdavid86/" class="contact-btn contact-btn--linkedin" target="_blank" rel="noopener noreferrer" aria-label="Visit David Tavares LinkedIn profile">
+                        <svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg>
                         LinkedIn
                     </a>
-                    <a href="https://github.com/neodavet" class="contact-btn contact-btn--github" target="_blank" aria-label="Visit David Tavares GitHub profile">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/neodavet" class="contact-btn contact-btn--github" target="_blank" rel="noopener noreferrer" aria-label="Visit David Tavares GitHub profile">
+                        <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>
                         GitHub
                     </a>
                 </div>
@@ -241,19 +977,18 @@
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="https://github.com/neodavet" target="_blank" aria-label="Visit David Tavares GitHub profile"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/tavaresdavid86/" target="_blank" aria-label="Visit David Tavares LinkedIn profile"><i class="fab fa-linkedin"></i></a>
-                <!-- <a href="#" target="_blank"><i class="fab fa-twitter"></i></a> -->
+                <a href="https://github.com/neodavet" target="_blank" rel="noopener noreferrer" aria-label="Visit David Tavares GitHub profile"><svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg></a>
+                <a href="https://www.linkedin.com/in/tavaresdavid86/" target="_blank" rel="noopener noreferrer" aria-label="Visit David Tavares LinkedIn profile"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg></a>
             </div>
             <p>&copy; 2025 David's Portfolio. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/59896629022" class="whatsapp-float" target="_blank" aria-label="Contact David Tavares on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/59896629022" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact David Tavares on WhatsApp">
+        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
     </a>
 
     <script src="js/main.js"></script>
 </body>
-</html> 
+</html>
