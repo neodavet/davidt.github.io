@@ -361,6 +361,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateActiveMenuItem() {
         const scrollPosition = window.scrollY;
 
+        // Bottom-of-page guard: the last section (e.g. Contact) may be too short
+        // to ever reach the range check below once the scroll is clamped at the
+        // document bottom, so highlight its link explicitly when we're there.
+        if (window.innerHeight + Math.ceil(scrollPosition) >= document.documentElement.scrollHeight - 2) {
+            const lastSection = sections[sections.length - 1];
+            if (lastSection) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`.nav-links a[href="#${lastSection.getAttribute('id')}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+                return;
+            }
+        }
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100; // Offset for header
             const sectionHeight = section.offsetHeight;
