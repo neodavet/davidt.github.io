@@ -220,18 +220,19 @@ document.getElementById('load-more').addEventListener('click', () => {
     loadPortfolioItems();
 });
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links (offset by fixed header — see html scroll-padding-top for direct #hash URLs)
+const headerEl = document.querySelector('header');
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerEl.offsetHeight;
+        window.scrollTo({ top, behavior: 'smooth' });
     });
 });
 
 // Toggle a shadow on the header once the page is scrolled (theme-aware via CSS)
-const headerEl = document.querySelector('header');
 window.addEventListener('scroll', function() {
     headerEl.classList.toggle('scrolled', window.scrollY > 50);
 });
@@ -359,6 +360,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update active menu item
     function updateActiveMenuItem() {
         const scrollPosition = window.scrollY;
+
+        // Bottom-of-page guard: the last section (e.g. Contact) may be too short
+        // to ever reach the range check below once the scroll is clamped at the
+        // document bottom, so highlight its link explicitly when we're there.
+        if (window.innerHeight + Math.ceil(scrollPosition) >= document.documentElement.scrollHeight - 2) {
+            const lastSection = sections[sections.length - 1];
+            if (lastSection) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`.nav-links a[href="#${lastSection.getAttribute('id')}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+                return;
+            }
+        }
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100; // Offset for header
