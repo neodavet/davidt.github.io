@@ -3,19 +3,20 @@ David Tavares Senior Web Full Stack Development Portfolio
 
 ## Features
 
-- Responsive design
-- Smooth animations
-- Portfolio grid with load more functionality
-- Skills showcase
-- About section with resume download
-- WhatsApp floating button
-- Social media links
+- Responsive, fluid layout (`clamp()`-based type scale, no fixed breakpoints for text)
+- **Light/dark theme** — follows the OS by default, with a header toggle that persists the user's choice (`localStorage`) and applies before first paint (no flash)
+- Design-token system (CSS custom properties) driving both themes from one place
+- Portfolio grid with "Load More" pagination, hover-lift cards, and whole-card links
+- Animated stat counters and staggered card reveals — all gated behind `prefers-reduced-motion`
+- Skills showcase, About section with LinkedIn CTA, WhatsApp floating button, social links
+- Accessible: skip link, visible focus styles, keyboard-operable menu, ARIA-synced controls
+- SEO/PWA ready: canonical, Open Graph, Twitter Card, JSON-LD, `robots.txt`, `sitemap.xml`, web manifest
 
-## Features
-- Custom CSS styling
-- Vanilla JavaScript
-- Simple and clean design
-- Full control over styling
+## Tech
+
+- Vanilla JavaScript, no framework or bundler
+- All CSS and SVG icons inlined into `index.html` — no CDN, no build step
+- Tuned to score 100 across all four Lighthouse / PageSpeed categories
 
 ## File Structure
 
