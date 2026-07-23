@@ -220,18 +220,19 @@ document.getElementById('load-more').addEventListener('click', () => {
     loadPortfolioItems();
 });
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links (offset by fixed header — see html scroll-padding-top for direct #hash URLs)
+const headerEl = document.querySelector('header');
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerEl.offsetHeight;
+        window.scrollTo({ top, behavior: 'smooth' });
     });
 });
 
 // Toggle a shadow on the header once the page is scrolled (theme-aware via CSS)
-const headerEl = document.querySelector('header');
 window.addEventListener('scroll', function() {
     headerEl.classList.toggle('scrolled', window.scrollY > 50);
 });
