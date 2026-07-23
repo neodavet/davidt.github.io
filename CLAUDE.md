@@ -15,13 +15,16 @@ There is no build or test tooling. To preview changes, open `index.html` directl
 The site is essentially self-contained:
 
 - `index.html` — all page markup and content (hero, about, skills, portfolio, contact sections) **plus all styling inlined in a single `<style>` block in `<head>`**, organized top-to-bottom by page section (nav, hero, about, skills, portfolio, contact, footer). There is no separate stylesheet — inlining eliminates the render-blocking request, which is what keeps the Performance score at 100. Section content (bio text, skills lists, contact links) and styling are both edited directly here.
+  - The `<style>` block opens with a **design-token layer**: a `:root` set of CSS custom properties (`--accent`, `--bg`, `--surface`, `--text`, `--border`, shadows, radii, and a fluid `clamp()` type scale) and a `@media (prefers-color-scheme: dark)` block that re-declares the surface/text tokens. **Dark mode is automatic** (system-driven, no toggle). When styling, reference the tokens instead of hard-coding colors so both themes stay correct — the one deliberate exception is the hero, which sits over an always-dark image overlay and uses fixed light text. Motion is wrapped in a `@media (prefers-reduced-motion: reduce)` guard; keep new animations honoring it.
   - `<head>` also carries SEO metadata: canonical URL, Open Graph / Twitter Card tags, and a JSON-LD `Person` block. Keep these in sync with real content when it changes.
   - Icons are an **inline SVG sprite** (`<symbol id="i-…">` defined once near the top of `<body>`, referenced via `<svg class="icon"><use href="#i-…"></use></svg>`). There is no Font Awesome / CDN. To add an icon, add a new `<symbol>` and reference it; decorative icons get `aria-hidden="true"` and rely on the parent link's `aria-label`.
 - `js/main.js` — all JavaScript, vanilla (no framework/bundler). Key pieces:
   - `portfolioData`: an array of project objects (title, description, image, technologies, link) that is the single source of truth for the portfolio grid. To add/edit/remove a portfolio project, edit this array — there is no CMS or backend.
   - `loadPortfolioItems()` / `createPortfolioItem()`: render `portfolioData` into `#portfolio-grid`, paginated client-side via `currentPage` / `itemsPerPage` (6 per page) with a "Load More" button.
   - `initHeroSlider()`: rotates the `.hero-slider` slides every 5s. Only slide 1 has an inline `background-image` (it's the LCP element, preloaded in `<head>` with `fetchpriority="high"`); slides 2+ carry their URL in `data-src` and are lazy-loaded so they don't compete with the LCP image.
-  - Remaining listeners handle smooth-scroll navigation, header background on scroll, active nav-link highlighting per section, and the mobile hamburger menu (a real `<button>` that syncs `aria-expanded`).
+  - `initStatCounters()`: animates the portfolio stat numbers (values come from `data-count` / `data-suffix` / `data-decimals` on the `<h3>`s) via an `IntersectionObserver`; falls back to final values instantly under reduced motion.
+  - A module-level `prefersReducedMotion` flag gates the slider auto-rotation, the staggered card reveal (`.is-visible`), and the counters.
+  - Remaining listeners handle smooth-scroll navigation, a `.scrolled` shadow class on the header (theme-aware — no hard-coded colors), active nav-link highlighting per section, and the mobile hamburger menu (a real `<button>` that syncs `aria-expanded`).
 - Static SEO/PWA files at the repo root: `robots.txt`, `sitemap.xml`, `site.webmanifest`. The canonical/OG/sitemap URLs all point at `https://neodavet.github.io/davetportfolio/` — update them together if the deploy URL changes.
 
 Hero slider images live in `images/slider/` as paired `.png`/`.webp` (only the `.webp` is referenced and shipped; the `.png` sources are git-ignored). Favicons live in `images/favicon/`.
@@ -30,5 +33,5 @@ Hero slider images live in `images/slider/` as paired `.png`/`.webp` (only the `
 
 - Portfolio projects: add entries to `portfolioData` in `js/main.js`; the grid and pagination update automatically.
 - Content (bio, skills, contact info): edit directly in `index.html`.
-- Styling: edit the inline `<style>` block in `index.html`, keeping additions near the relevant section block.
+- Styling: edit the inline `<style>` block in `index.html`, keeping additions near the relevant section block. Use the `:root` design tokens (and their dark-mode overrides) rather than hard-coded colors, and gate any new motion behind `prefers-reduced-motion`.
 - Icons: add a `<symbol>` to the inline SVG sprite and reference it with `<use href="#i-…">`; do not reintroduce a CDN icon font.

@@ -100,22 +100,25 @@ const portfolioData = [
     }
 ];
 
+// Respect the user's reduced-motion system preference throughout the page
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Portfolio loading functionality
 let currentPage = 1;
 const itemsPerPage = 6;
 
 function createPortfolioItem(item) {
     return `
-        <div class="portfolio-item">
-            ${item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy" width="800" height="420">` : ''}
+        <article class="portfolio-item">
+            ${item.image ? `<div class="portfolio-thumb"><img src="${item.image}" alt="${item.title}" loading="lazy" width="800" height="420"></div>` : ''}
             <div class="portfolio-item-content">
-                <h3><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h3>
+                <h3><a class="portfolio-link" href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}<svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg></a></h3>
                 <p>${item.description}</p>
                 <div class="technologies">
                     ${item.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                 </div>
             </div>
-        </div>
+        </article>
     `;
 }
 
@@ -131,20 +134,21 @@ function loadPortfolioItems() {
     
     // Clear existing content
     portfolioGrid.innerHTML = '';
-    
-    // Add new items with animation
+
+    // Add new items with a staggered reveal (CSS handles the transition via .is-visible)
     const newItems = tempContainer.children;
     Array.from(newItems).forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
         portfolioGrid.appendChild(item);
-        
-        // Trigger animation after a small delay
+
+        if (prefersReducedMotion) {
+            item.classList.add('is-visible');
+            return;
+        }
+
+        // Stagger the reveal of each card
         setTimeout(() => {
-            item.style.transition = 'opacity 1s ease, transform 1s ease';
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-        }, 200 * index); // 200ms delay between items
+            item.classList.add('is-visible');
+        }, 120 * index);
     });
 
     // Show/hide load more button
@@ -190,14 +194,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add scroll-based animations
+// Toggle a shadow on the header once the page is scrolled (theme-aware via CSS)
+const headerEl = document.querySelector('header');
 window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-    } else {
-        header.style.backgroundColor = '#fff';
-    }
+    headerEl.classList.toggle('scrolled', window.scrollY > 50);
 });
 
 // Hero Slider
@@ -254,14 +254,63 @@ function initHeroSlider() {
     // Preload images before starting the slider
     preloadImages();
 
-    // Change slide every 5 seconds
-    setInterval(nextSlide, 5000);
+    // Auto-rotate every 5s — but not for users who prefer reduced motion
+    if (!prefersReducedMotion) {
+        setInterval(nextSlide, 5000);
+    }
+}
+
+// Animated count-up for the portfolio stat cards
+function initStatCounters() {
+    const counters = document.querySelectorAll('.stat-card h3[data-count]');
+    if (!counters.length) return;
+
+    const render = (el, value) => {
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const suffix = el.dataset.suffix || '';
+        el.textContent = value.toFixed(decimals) + suffix;
+    };
+
+    // Reduced motion (or no IntersectionObserver): show final values immediately
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        counters.forEach(el => render(el, parseFloat(el.dataset.count)));
+        return;
+    }
+
+    const animate = (el) => {
+        const target = parseFloat(el.dataset.count);
+        const duration = 1500;
+        const start = performance.now();
+
+        const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            // easeOutCubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            render(el, target * eased);
+            if (progress < 1) requestAnimationFrame(tick);
+            else render(el, target);
+        };
+
+        requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animate(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    counters.forEach(el => observer.observe(el));
 }
 
 // Initialize everything when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     initHeroSlider();
     loadPortfolioItems();
+    initStatCounters();
 });
 
 // Mobile Menu Functionality
