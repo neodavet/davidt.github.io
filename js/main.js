@@ -103,6 +103,42 @@ const portfolioData = [
 // Respect the user's reduced-motion system preference throughout the page
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Manual dark/light theme toggle. Persists an explicit override in localStorage;
+// with no override the page follows the OS via prefers-color-scheme (see CSS).
+(function initThemeToggle() {
+    const root = document.documentElement;
+    const toggle = document.querySelector('.theme-toggle');
+    if (!toggle) return;
+
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function resolvedTheme() {
+        return root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+    }
+
+    function syncButton() {
+        const isDark = resolvedTheme() === 'dark';
+        const label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+        toggle.setAttribute('aria-pressed', String(isDark));
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('title', label);
+    }
+
+    toggle.addEventListener('click', function () {
+        const next = resolvedTheme() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        syncButton();
+    });
+
+    // With no explicit override, keep the button in step with live OS changes
+    systemDark.addEventListener('change', function () {
+        try { if (!localStorage.getItem('theme')) syncButton(); } catch (e) {}
+    });
+
+    syncButton();
+})();
+
 // Portfolio loading functionality
 let currentPage = 1;
 const itemsPerPage = 6;
